@@ -1,0 +1,15 @@
+name = "tracethtruth-durable-objects"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[[durable_objects.bindings]]
+name = "ANALYSIS_STATE"
+class_name = "AnalysisState"
+
+[[durable_objects.bindings]]
+name = "WEBSOCKET_HANDLER"
+class_name = "WebSocketHandler"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["AnalysisState", "WebSocketHandler"]

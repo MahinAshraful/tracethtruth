@@ -1,0 +1,9 @@
+name = "tracethtruth-workflows"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[workflows]
+name = "analysis-workflow"
+binding = "WORKFLOW"
+class_name = "AnalysisWorkflow"
+script_name = "tracethtruth-workflows"

@@ -1,0 +1,29 @@
+name = "tracethtruth-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+workers_dev = true
+
+[env.production]
+name = "tracethtruth-api-production"
+route = { pattern = "api.tracethtruth.com/*", zone_name = "tracethtruth.com" }
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "YOUR_KV_NAMESPACE_ID"
+
+[[durable_objects.bindings]]
+name = "ANALYSIS_STATE"
+class_name = "AnalysisState"
+script_name = "tracethtruth-durable-objects"
+
+[[durable_objects.bindings]]
+name = "WEBSOCKET_HANDLER"
+class_name = "WebSocketHandler"
+script_name = "tracethtruth-durable-objects"
+
+[vars]
+GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta"
+
+# Add to .dev.vars file:
+# GEMINI_API_KEY=your-api-key-here
+# OPENAI_API_KEY=your-openai-key-here
