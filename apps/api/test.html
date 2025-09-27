@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>TraceTheTruth Test</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        textarea { width: 100%; height: 100px; }
+        button { background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        #result { margin-top: 20px; padding: 20px; background: #f3f4f6; border-radius: 5px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>🛡️ TraceTheTruth</h1>
+    <textarea id="content" placeholder="Enter content to analyze..."></textarea>
+    <br><br>
+    <button onclick="analyze()">Analyze</button>
+    <div id="result"></div>
+    
+    <script>
+        async function analyze() {
+            const content = document.getElementById("content").value;
+            const resultDiv = document.getElementById("result");
+            
+            if (!content) {
+                alert("Please enter some content");
+                return;
+            }
+            
+            resultDiv.innerHTML = "Analyzing...";
+            
+            try {
+                const response = await fetch("https://tracethtruth-api.mahinashraful08.workers.dev/api/analyze", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ content })
+                });
+                
+                const data = await response.json();
+                resultDiv.innerHTML = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.innerHTML = "Error: " + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

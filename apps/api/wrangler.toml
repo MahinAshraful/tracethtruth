@@ -1,29 +1,25 @@
-name = "tracethtruth-api"
+﻿name = "tracethtruth-api"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
 workers_dev = true
 
-[env.production]
-name = "tracethtruth-api-production"
-route = { pattern = "api.tracethtruth.com/*", zone_name = "tracethtruth.com" }
-
+# KV Namespace for caching
 [[kv_namespaces]]
 binding = "CACHE"
-id = "YOUR_KV_NAMESPACE_ID"
+id = "08f3e6b248074fdbb6cf9e31352f4be4"
 
-[[durable_objects.bindings]]
-name = "ANALYSIS_STATE"
-class_name = "AnalysisState"
-script_name = "tracethtruth-durable-objects"
-
-[[durable_objects.bindings]]
-name = "WEBSOCKET_HANDLER"
-class_name = "WebSocketHandler"
-script_name = "tracethtruth-durable-objects"
-
+# Environment variables
 [vars]
 GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta"
+ENVIRONMENT = "development"
 
-# Add to .dev.vars file:
-# GEMINI_API_KEY=your-api-key-here
-# OPENAI_API_KEY=your-openai-key-here
+# Durable Objects commented out for now
+# [[durable_objects.bindings]]
+# name = "ANALYSIS_STATE"
+# class_name = "AnalysisState"
+# script_name = "tracethtruth-durable-objects"
+
+# [[durable_objects.bindings]]
+# name = "WEBSOCKET_HANDLER"
+# class_name = "WebSocketHandler"
+# script_name = "tracethtruth-durable-objects"
